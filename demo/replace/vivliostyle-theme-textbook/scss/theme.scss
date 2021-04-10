@@ -1,0 +1,268 @@
+@charset "UTF-8";
+@use "variables" as *;
+
+img {
+  max-width: 80%;
+  text-align: center;
+}
+
+// 横注
+div.sidenote {
+  top: 0px;
+  display: inline-block;
+  width: $sidenote-area;
+  font-size: 80%;
+  line-height: 0.8 * $line-height;
+  margin-top: -7em;
+  word-wrap: break-word;
+
+  &.L {
+    margin-left: -5 * $line-height; // TODO: 本文領域の設定から算出
+    float: left;
+  }
+
+  &.R {
+    margin-right: -5 * $line-height; // TODO: 本文領域の設定から算出
+    float: right;
+  }
+}
+// ぶらさがり
+span.hanging {
+  top: 0px;
+  display: block;
+  width: 3em;
+  height: $line-height;
+  margin-top: 0.4em; // TODO 計算
+  word-wrap: break-word;
+  margin-right: -3.2em; // TODO 計算
+  padding-left:0;
+  float: right;
+  text-indent: 0;
+  @if $layoutcheck != 0 {
+    border: solid 1px red;
+  }
+}
+
+/* 見出し */
+
+h1 {
+  $line: 3; // 行取り
+  box-sizing: border-box;
+  height: $line * $line-height;
+  line-height: $line * $line-height;
+  position: relative;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom:0;
+  padding-left: $line * $line-height;
+  border: 2px solid #000;
+  margin-block-start: 0;
+  margin-block-end: 1 * $line-height;
+  font-size: $line-height * $line * 0.4;
+
+  &:before {
+    position: absolute;
+    top: -150%;
+    left: -100px;
+    width: 180px;
+    height: 300%;
+    content: '';
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg);
+    background: #000;
+  }
+
+  &:after, span {
+    font-size: 1.4em;
+    position: absolute;
+    z-index: 1;
+    top: -0.2em;
+    left: -0.3em;
+    display: block;
+    padding-top: 0.1em;
+    padding-left: 16px;
+    color: #fff;
+    content: counter(section, decimal-leading-zero);
+    height: 4 * $line-height;
+  }
+}
+
+h2 {
+  $line: 2.5;
+  box-sizing: border-box;
+  height: $line * $line-height;
+  line-height: $line * $line-height;
+  padding-left: 1em;
+  border-left: 5px solid #000;
+  background: #f4f4f4;
+  margin-block-start: $line-height;
+  margin-block-end: 1.5 * $line-height;
+}
+
+h3 {
+  $line: 2;
+  box-sizing: border-box;
+  height: $line * $line-height;
+  line-height: $line * $line-height;
+  padding-left: 0.5em;
+  border-left: solid 3px black;
+  border-bottom: solid 1px black;
+  margin-block-start: $line-height;
+  margin-block-end: $line-height;
+}
+
+h4 {
+  $line: 1;
+  box-sizing: border-box;
+  height: $line * $line-height;
+  padding: 0.1em 0.5em 0.1em;
+  border-left: solid 3px black;
+  margin-block-start: $line-height;
+  margin-block-end: $line-height;
+}
+
+div.character, span.character {
+  font-family: $code_font;
+}
+
+div.task {
+  border-top: solid 1px gray;
+  border-bottom: solid 1px gray;
+  padding: 0;
+  margin: 1em 0;
+}
+
+.task {
+  h2 {
+    $line: 2;
+    font-size: 1.6em;
+    line-height: $line * $line-height;
+    height: $line * $line-height;
+    margin-block-end: $line-height;
+    padding: 0 0 0 1em;
+  }
+
+  h3 {
+    $line: 1.5;
+    line-height: $line * $line-height;
+    height: $line * $line-height;
+    font-size: 1.1em;
+    margin-block-end: 0.5 * $line-height;
+    padding: 0 0 0 1em;
+  }
+
+  img {
+    width: 80%;
+    display: inline;
+    text-align: center;
+  }
+
+  .full img {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  figure.plantuml img {
+    width: auto;
+  }
+}
+
+div.comment {
+  display: none;
+}
+
+.check li {
+  list-style: none;
+  margin-bottom: 0.5em;
+
+  &::before {
+    content: "□";
+    padding-right: 1em;
+  }
+}
+
+.aphorism p {
+  font-size: 1.1em;
+  text-align: right;
+  padding-right: 1em;
+
+  &:last-of-type {
+    font-size: 1em;
+  }
+}
+
+strong {
+  font-style: normal;
+}
+
+/* page,chapter設定用のp要素を非表示にする */
+
+body > p {
+  display: none;
+}
+
+div {
+  &.parallel {
+    display: flex;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &[class*='size-'] {
+    width: 100%;
+  }
+
+  &[class*='size-'] img {
+    margin: 0 auto;
+    display: block;
+  }
+
+  &.size-20 img {
+    max-width: 20%;
+  }
+
+  &.size-33 img {
+    max-width: 33.3%;
+  }
+
+  &.size-50 img {
+    max-width: 50%;
+  }
+
+  &.size-66 img {
+    max-width: 66.6%;
+  }
+
+  &.size-75 img {
+    max-width: 75%;
+  }
+}
+
+table td,
+table th {
+  border-right: solid 1px gray;
+  padding: 0.2em;
+}
+
+table td:first-child,
+table th:first-child {
+  border-left: solid 1px gray;
+  padding: 0.2em;
+}
+
+/* 補助的なスタイル */
+
+div.box {
+  width: 100%;
+  height: 6 * $line-height;
+  border: solid 1px black;
+  border-radius: 0.3 * $line-height;
+}
+
+/* Replace: @ */
+p.empty-paragraph {
+  height: $line-height;
+}

@@ -1,0 +1,178 @@
+section {
+    width: 100%;
+    padding-bottom: 1em;
+    position: relative;
+}
+
+figcaption {
+    text-align: left;
+}
+
+figure pre {
+    text-align: left;
+}
+
+@page {
+    @top-right-corner {
+        margin-top: 7mm;
+        margin-bottom: 1mm;
+        margin-left: -10mm;
+        content: counters(page,' / ',pages);
+    }
+}
+
+@page {
+    background-image: url("bg_body.jpg");
+    background-size: cover;
+    /*background-position: center -250px;*/
+}
+
+
+@page:first {
+    background-image: url("bg_title.jpg");
+    background-size: cover;
+    background-position: center center;
+    @bottom-right {
+        margin-top: -15mm;
+        margin-bottom: 10mm;
+        margin-left: -150mm;
+        width: 150mm;
+        padding-right: 5mm;
+        content: "Vivliostyle ユーザーと開発者の集い 2021春/2021-04-10";
+    }
+}
+
+@page:nth(2) {
+    counter-reset: page 0;
+}
+
+/*
+ * タイトルページ
+ */
+
+body > section {
+    page-break-inside: auto;
+    padding-top: 2mm;
+}
+
+body > section:first-of-type > section > h2 {
+    text-align: center;
+}
+
+/*
+ *  本文ページ
+ */
+
+body > section:nth-of-type(n+2) h1 {
+    position: absolute;
+    top: 3mm;
+}
+
+body > section > p {
+    margin-top: 2em;
+}
+
+body > section:nth-of-type(n+2) h3,
+body > section:nth-of-type(n+2) h4 {
+    color:black;
+}
+
+body > section:nth-of-type(n+2) p,
+body > section:nth-of-type(n+2) ul,
+body > section:nth-of-type(n+2) table
+{
+    font-size: 28pt;
+}
+
+/*body > section:nth-of-type(n+2) > ul {*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*body > section:nth-of-type(n+2) > ul > li > ul {*/
+/*    font-weight: normal;*/
+/*}*/
+
+@page:first {
+    counter-reset: chapter;
+}
+
+@page:nth(1) {
+    counter-increment: chapter;
+}
+
+/*h1::before {*/
+/*    content: "第" counter(chapter) "章";*/
+/*}*/
+
+/*body#generated-toc h1::before {*/
+/*    content: none;*/
+/*}*/
+
+ol,ul {
+    margin-top: 0.4em;
+}
+
+pre {
+    background: black;
+}
+
+figure > pre > code {
+    background: transparent;
+    color: white;
+}
+
+figcaption {
+    color: black;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #c2c2c2;
+}
+
+.token.punctuation,
+.token.tag,
+.token.attr-name {
+    color: #ab875d;
+}
+
+.token.property,
+.token.boolean,
+.token.number {
+    color: #fcb8ff;
+}
+
+.token.selector {
+    color: #dfc48c;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #a67f59;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.string {
+    color: #e2fc99;
+}
+
+.token.regex,
+.token.important {
+    color: #e90;
+}
+
+
+.language-css {
+    color: #cd6a51;
+}
+
+.token.punctuation {
+    color: white;
+}

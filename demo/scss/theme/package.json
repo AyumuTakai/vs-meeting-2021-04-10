@@ -1,0 +1,17 @@
+{
+  "name": "theme",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+  "vivliostyle": {
+    "theme": {
+      "name": "scss sample",
+      "style": "./theme.scss",
+      "category": "sample",
+      "topics": [
+        "SCSS",
+        "sample"
+      ]
+    }
+  }
+}

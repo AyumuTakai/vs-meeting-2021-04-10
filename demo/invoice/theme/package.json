@@ -1,0 +1,20 @@
+{
+  "name": "invoice",
+  "version": "1.0.0",
+  "description": "vivliostyle invoice theme",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "vivliostyle": {
+    "theme": {
+      "name": "Invoice themelate",
+      "style": ["./A4single.css", "./theme.css"],
+      "category": "template",
+      "scripts": "scripts.js",
+      "topics": [
+        "請求書","invoice","リプレイス"
+      ]
+    }
+  }
+}

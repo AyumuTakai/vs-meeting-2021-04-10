@@ -1,0 +1,245 @@
+@charset "UTF-8";
+
+@use 'variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+p {
+  margin-block-start: -($line-height - $fontSize) / 2; // 行上の余白の分ネガティブマージンで引き上げる
+  margin-block-end: ($line-height - $fontSize) / 2;    // 引き上げた分を段落間に追加する
+  break-inside: auto;
+  break-after: auto;
+  break-before: auto;
+  orphans: 1;
+  widows: 1;
+}
+
+/**
+* ページ定義
+**/
+
+// ヘッダ
+
+
+@page {
+  // sizeは無視される? vivliostyle.conf.jsの設定が優先. ver.3.0.0 で修正予定
+  size: $paper-width $paper-height;
+  // 天地のマージン
+  margin-top: $top-margin;
+  margin-bottom: $bottom-margin;
+  padding:0;
+
+  // 以下、左右ページ共通の設定 @page:left,@page:rightの設定によって上書きされる
+
+  @top-left-corner {
+    font-family: $header-font;
+    @include layoutbox("top-left-corner") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @top-left {
+    font-family: $header-font;
+    @include layoutbox("top-left") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @top-center {
+    font-family: $header-font;
+    @include layoutbox("top-center") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @top-right {
+    font-family: $header-font;
+    @include layoutbox("top-right") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @top-right-corner {
+    font-family: $header-font;
+    @include layoutbox("top-right-corner") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @right-top {
+    font-family: $side-font;
+    @include layoutbox("right-top") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @right-middle {
+    font-family: $side-font;
+    @include layoutbox("right-middle") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @right-bottom {
+    font-family: $side-font;
+    @include layoutbox("right-bottom") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-left-corner {
+    font-family: $footer-font;
+    @include layoutbox("bottom-left-corner") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-left {
+    font-family: $footer-font;
+    @include layoutbox("bottom-left") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-center {
+    font-family: $footer-font;
+    @include layoutbox("bottom-center\A" + styleInfo()) {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-right {
+    font-family: $footer-font;
+    @include layoutbox("bottom-right") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-right-corner {
+    font-family: $footer-font;
+    @include layoutbox("bottom-right-corner") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @left-top {
+    font-family: $side-font;
+    @include layoutbox("left-top") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @left-middle {
+    font-family: $side-font;
+    @include layoutbox("left-middle") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @left-bottom {
+    font-family: $side-font;
+    @include layoutbox("left-bottom") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+}
+
+// 左ページのレイアウト
+@page:left {
+  font-family: $header-font;
+  margin-left: $edge-margin;    // 小口
+  margin-right: $gutter-margin; // のど
+  padding-left: $sidenote-area; // 小口側に傍注
+  background: $left-background-image;
+
+  @top-left {
+    // 書籍名
+    content: env(pub-title);
+    text-align: left;
+    color: black;
+    padding: $header-padding-top $header-padding-right $header-padding-bottom $header-padding-left;
+  }
+
+  @bottom-left {
+    // ページ番号
+    content: counter(page);
+    color: black;
+    padding: $footer-padding-top $footer-padding-right $footer-padding-bottom $footer-padding-left;
+  }
+}
+
+// 右ページのレイアウト
+@page:right {
+  margin-left: $gutter-margin; // のど
+  margin-right: $edge-margin;  // 小口
+  padding-right: $sidenote-area; // 小口側に傍注
+  background: $right-background-image;
+
+  @top-right {
+    // 章タイトル
+    content: env(doc-title);
+    text-align: right;
+    color: black;
+    padding: $header-padding-top $header-padding-right $header-padding-bottom $header-padding-left;
+  }
+
+  @bottom-right {
+    // ページ番号
+    content: counter(page);
+    color: black;
+    padding: $footer-padding-top $footer-padding-right $footer-padding-bottom $footer-padding-left;
+  }
+}
+
+/* 全エントリで一番最初のページのみに適用 */
+@page :first {
+  counter-reset: chapter;
+}
+
+/* 各エントリの最初のページに適用 */
+@page :nth(1) {
+  counter-increment: chapter;
+  @if $page != null {
+    counter-reset: page $page - 1;
+  }
+}

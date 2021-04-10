@@ -1,0 +1,297 @@
+@charset "UTF-8";
+
+@use 'variables' as *;
+
+* {
+  margin:0;
+  padding: 0;
+}
+
+:root {
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+p {
+  margin-block-start: -($line-height - $font-size) / 2; // 行上の余白の分ネガティブマージンで引き上げる
+  margin-block-end: ($line-height - $font-size) / 2;    // 引き上げた分を段落間に追加する
+  break-inside: auto;
+  break-after: auto;
+  break-before: auto;
+  orphans: 1;
+  widows: 1;
+}
+
+@function genelate($w,$h){
+  $max-col:10;
+  $max-row:10;
+  $color:0;
+  $svg: '<svg width="#{$w*$max-col}" height="#{$h*$max-row}" xmlns="http://www.w3.org/2000/svg" viewBox="0,0,#{$w*$max-col},#{$h*$max-row}">';
+  @for $row from 0 to $max-row {
+    @for $col from 0 to $max-col {
+      $color: $color + 1;
+      $svg: $svg + '<rect fill-opacity="0" stroke-dasharray="30,30" id="svg_1" height="#{$w}" width="#{$w}" y="#{$h * $row}" x="#{$w * $col}" stroke-width="10" stroke="rgb(0%,0%,100%)" />';
+    }
+  }
+  $svg: $svg + '</svg>';
+  @return $svg;
+}
+
+
+// 確認用にページ内容区画に文字組みのガイドを表示する。
+@if $layoutcheck != 0 {
+  body > section {
+    min-height: 100%;
+    $w: $font-size; // pt->px
+    $h: $line-height;
+    $wx: $w * 10;
+    $hx: $h * 10;
+    $svgData: genelate($wx,$line-height * 10); // '<svg width="#{$wx}" height="#{$hx}" xmlns="http://www.w3.org/2000/svg" viewBox="0,0,#{$wx},#{$hx}"><rect fill-opacity="0" stroke-dasharray="30,30" id="svg_1" height="#{$wx}" width="#{$wx}" y="0" x="0" stroke-width="10" stroke="%2300f" /></svg>';
+    background-image: url('data:image/svg+xml;charset=utf8,#{$svgData}');
+    background-size: $w*10 floor($h)*10; // svg画像のサイズは縦横整数になるため、フォントサイズに合わせて実数でサイズを指定する
+    background-repeat: repeat;
+  }
+}
+
+// レイアウト確認用 本文フォントサイズと行の高さを返す
+@function styleInfo () {
+  @return "$font-size: #{$font-size} pt / $line-height: #{$line-height}";
+}
+// ページ内容区画以外のブロックに枠線とブロック名を表示するためのMixIn
+@mixin layoutbox($label) {
+  @if $layoutcheck != 0 {
+    font-size: 10px;
+    border: gray 1px dashed;
+    content: $label;
+    color:red;
+    white-space: pre; // content内での改行のため必要 改行文字は\A
+  }@else{
+    @content
+  }
+}
+
+/**
+* ページ定義
+**/
+
+// ヘッダ
+// マージンで調整ではなくパディングで調整する
+$header-font: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+$header-font-size: 75%;
+$header-padding-top: 12mm;
+$header-padding-right: 2mm;
+$header-padding-bottom: 2mm;
+$header-padding-left: 2mm;
+
+// 左右
+$side-font: $header-font;
+$side-font-size: 75%;
+
+// フッター
+$footer-font: $header-font;
+$footer-font-size: 75%;
+$footer-padding-top: 2mm;
+$footer-padding-right: 2mm;
+$footer-padding-bottom: 15mm;
+$footer-padding-left: 2mm;
+
+@page {
+  // sizeは無視される? vivliostyle.conf.jsの設定が優先. ver.3.0.0 で修正予定
+  size: $paper-width $paper-height;
+  // 天地のマージン
+  margin-top: $top-margin;
+  margin-bottom: $bottom-margin;
+
+  // 以下、左右ページ共通の設定 @page:left,@page:rightの設定によって上書きされる
+
+  @top-left-corner {
+    font-family: $header-font;
+    @include layoutbox("top-left-corner") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @top-left {
+    font-family: $header-font;
+    @include layoutbox("top-left") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @top-center {
+    font-family: $header-font;
+    @include layoutbox("top-center") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @top-right {
+    font-family: $header-font;
+    @include layoutbox("top-right") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @top-right-corner {
+    font-family: $header-font;
+    @include layoutbox("top-right-corner") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $header-font-size;
+      content: '';
+    }
+  }
+
+  @right-top {
+    font-family: $side-font;
+    @include layoutbox("right-top") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @right-middle {
+    font-family: $side-font;
+    @include layoutbox("right-middle") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @right-bottom {
+    font-family: $side-font;
+    @include layoutbox("right-bottom") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-left-corner {
+    font-family: $footer-font;
+    @include layoutbox("bottom-left-corner") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-left {
+    font-family: $footer-font;
+    @include layoutbox("bottom-left") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-center {
+    font-family: $footer-font;
+    @include layoutbox("bottom-center\A" + styleInfo()) {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-right {
+    font-family: $footer-font;
+    @include layoutbox("bottom-right") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @bottom-right-corner {
+    font-family: $footer-font;
+    @include layoutbox("bottom-right-corner") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $footer-font-size;
+      content: '';
+    }
+  }
+
+  @left-top {
+    font-family: $side-font;
+    @include layoutbox("left-top") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @left-middle {
+    font-family: $side-font;
+    @include layoutbox("left-middle") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+
+  @left-bottom {
+    font-family: $side-font;
+    @include layoutbox("left-bottom") {
+      // 確認用枠線非表示の場合のスタイル
+      font-size: $side-font-size;
+      content: '';
+    }
+  }
+}
+
+// 左ページのレイアウト
+@page:left {
+  font-family: $header-font;
+  margin-left: $edge-margin;    // 小口
+  margin-right: $gutter-margin; // のど
+  padding-left: $sidenote-area; // 小口側に側注
+  background: $left-background-image;
+
+  @top-left {
+    // 書籍名
+    content: env(pub-title);
+    text-align: left;
+    color: black;
+    padding: $header-padding-top $header-padding-right $header-padding-bottom $header-padding-left;
+  }
+
+  @bottom-left {
+    // ページ番号
+    content: counter(page);
+    color: black;
+    padding: $footer-padding-top $footer-padding-right $footer-padding-bottom $footer-padding-left;
+  }
+}
+
+// 右ページのレイアウト
+@page:right {
+  margin-left: $gutter-margin; // のど
+  margin-right: $edge-margin;  // 小口
+  padding-right: $sidenote-area; // 小口側に側注
+  background: $right-background-image;
+
+  @top-right {
+    // 章タイトル
+    content: env(doc-title);
+    text-align: right;
+    color: black;
+    padding: $header-padding-top $header-padding-right $header-padding-bottom $header-padding-left;
+  }
+
+  @bottom-right {
+    // ページ番号
+    content: counter(page);
+    color: black;
+    padding: $footer-padding-top $footer-padding-right $footer-padding-bottom $footer-padding-left;
+  }
+}

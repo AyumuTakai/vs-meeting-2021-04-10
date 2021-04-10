@@ -1,0 +1,85 @@
+h1 {
+    text-align: center;
+}
+
+h2 {
+    font-size: 1em;
+
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: black;
+}
+
+.bank-details {
+    position: absolute;
+    bottom: 3em;
+}
+
+.invoice-address p {
+    margin: 0;
+}
+
+.issue-date,
+.contact {
+    text-align: right;
+}
+
+table{
+    width: 100%;
+    border-collapse:separate;
+    border-spacing: 0;
+}
+
+table th:first-child{
+    border-radius: 5px 0 0 0;
+}
+
+table th:last-child{
+    border-radius: 0 5px 0 0;
+    border-right: 1px solid #3c6690;
+}
+
+table th{
+    text-align: center;
+    color:white;
+    background: gray;
+    border-left: 1px solid #3c6690;
+    border-top: 1px solid #3c6690;
+    border-bottom: 1px solid #3c6690;
+    padding: 0.2em;
+}
+
+table td{
+    text-align: center;
+    border-left: 1px solid #a8b7c5;
+    border-bottom: 1px solid #a8b7c5;
+    border-top:none;
+    padding: 0.2em;
+}
+
+table td:last-child{
+    border-right: 1px solid #a8b7c5;
+}
+
+table tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+}
+
+table tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+}
+
+table tr:last-child td {
+    border-left: none;
+}
+
+table tr:last-child td:first-child,
+table tr:last-child td:last-child
+{
+    border-left: 1px solid #a8b7c5;
+}

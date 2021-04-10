@@ -1,0 +1,117 @@
+
+
+
+//
+// 用紙サイズ
+//
+// A4縦 高さ
+$paper-height: 297mm !default;
+// A4縦 幅
+$paper-width: 210mm !default;
+
+//
+// ページ設定
+//
+// ページマージン
+// 以下のマージンを除いた領域がbody要素以下が表示される範囲
+// 天マージン
+$top-margin: 20mm !default;
+// 地マージン
+$bottom-margin: 15mm !default;
+// 小口マージン
+$edge-margin: 18mm !default;
+// のどマージン
+$gutter-margin: 35mm !default;
+// 背景画像
+// urlは生成したCSSファイルからの相対パスで指定
+// 背景画像が不要な場合はnullを指定
+$left-background-image: null !default;
+$right-background-image: null !default;
+// 傍注領域
+$sidenote-area: 0mm !default;
+
+// マージンで調整ではなくパディングで調整する
+$header-font: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+$header-font-size: 75%;
+$header-padding-top: 12mm;
+$header-padding-right: 2mm;
+$header-padding-bottom: 2mm;
+$header-padding-left: 2mm;
+
+// 左右
+$side-font: $header-font;
+$side-font-size: 75%;
+
+// フッター
+$footer-font: $header-font;
+$footer-font-size: 75%;
+$footer-padding-top: 2mm;
+$footer-padding-right: 2mm;
+$footer-padding-bottom: 15mm;
+$footer-padding-left: 2mm;
+
+
+//
+// 表紙
+//
+
+// ページ番号初期値
+$page: null !default;
+// 表紙のオン/オフ nullでなければ表紙
+$frontpage: null !default;
+// 表紙の背景画像
+$frontpageImage: url("cover.jpeg") !default;
+
+//
+// 本文
+//
+// 本文文字サイズ(pt)単位を付けずに数値のみ指定
+$fontSize: 11 !default;
+
+// 行の高さ(pt)
+$lineHeight: 20 !default;
+
+// 段落間 本文の文字($font-size)に対する倍率
+// 本文文字サイズに応じて微調整が必要
+$paragraph-spacing: 0 !default;
+
+// 文字間隔
+$letter-spacing: 0 !default;
+
+//
+// コード
+//
+// https://github.com/yuru7/HackGen
+$code_font:"Hackgen" !default;
+
+//
+// ユーティリティ
+//
+
+// ページレイアウト確認用枠線 0以外で表示
+$layoutGuide: 0 !default;
+
+//
+// 算出値
+//
+
+$font-size: floor($fontSize * 1.3333px); // 実数pxはブラウザごとの違いが出るらしい?
+$line-height: floor($lineHeight * 1.3333px); // Chrome,Safariでは小数点以下切り捨て
+
+// ページ内容区画以外のブロックに枠線とブロック名を表示するためのMixIn
+@mixin layoutbox($label) {
+  @if $layoutGuide != 0 {
+    font-size: 10px;
+    border: gray 1px dashed;
+    content: $label;
+    color:red;
+    white-space: pre; // content内での改行のため必要 改行文字は\A
+  }@else{
+    @content
+  }
+}
+
+// レイアウト確認用 本文フォントサイズと行の高さを返す
+@function styleInfo () {
+  @return "$font-size: #{$fontSize}pt (#{$font-size}) / $line-height: #{$lineHeight}pt (#{$line-height})";
+}

@@ -1,0 +1,125 @@
+@charset "utf-8";
+@use "variables" as *;
+
+@if $layoutGuide != 0 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    border:solid 1px darkcyan;
+    background: rgba(90,90,100,0.5);
+  }
+
+  section {
+    border:solid 1px darkcyan;
+  }
+
+  p {
+    border: solid 1px red;
+  }
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// https://shanabrian.com/web/sass/svg-url-encode-function.php
+
+@function str-replace($substr, $newsubstr, $str, $all:false) {
+  $pos : str-index($str, $substr);
+
+  @while $pos != null {
+    $strlen : str-length($substr);
+    $start : str-slice($str, 0, $pos - 1);
+    $end : str-slice($str, $pos + $strlen);
+    $str : $start + $newsubstr + $end;
+
+    @if $all == true {
+      $pos : str-index($str, $substr);
+    } @else {
+      $pos : null;
+    }
+  }
+  @return $str;
+}
+
+// SVGタグをURLエンコード
+@function svgUrlEncode($svg) {
+  $repMap : (
+          "<"  : "%3C",
+          ">"  : "%3E",
+          "#"  : "%23",
+          "{"  : "%7B",
+          "}"  : "%7D",
+          "\"" : "'"
+  );
+
+  $enc : $svg;
+
+  @each $s, $r in $repMap {
+    $enc : str-replace($s, $r, $enc, true);
+  }
+
+  @return $enc;
+}
+
+// SVGタグをData URIスキームとしてurl関数で返す
+@function svgUrlFunc($svg, $enc:true) {
+  @if $enc == true {
+    $svg : svgUrlEncode($svg);
+  }
+  @return url("data:image/svg+xml,#{$svg}");
+}
+
+@function genelate($width,$height){
+
+  $width: floor(strip-unit($width) * 3.78); // mm → px
+  $height: floor(strip-unit($height) * 3.78); // mm → px
+
+  $svg: '<svg xmlns="http://www.w3.org/2000/svg" width="#{$width}" height="#{$height}" version="1.1">';
+  $svg: $svg + '<defs><pattern id="pattern" x="0" y="0" width="#{$font-size}" height="#{$line-height + 1}" patternUnits="userSpaceOnUse" viewBox="0 0 #{$font-size} #{$line-height}">';
+  $svg: $svg + '<rect x="0" y="0" width="#{$font-size}"  height="#{$line-height}" fill="white" fill-opacity="1.0" />';
+  $svg: $svg + '<line x1="0" y1="0" x2="#{$font-size}" y2="0" stroke="cyan"  stroke-width="1" />'; // 上の横線
+  $svg: $svg + '<line x1="0" y1="#{$font-size}" x2="#{$font-size}" y2="#{$font-size}" stroke="cyan" stroke-width="1" />'; // 下の横線
+  $svg: $svg + '<line x1="0" y1="0" x2="0" y2="#{$font-size}" stroke="cyan" stroke-dasharray="3,3" stroke-width="1" />'; // 左の縦線
+
+  //$svg: $svg + '<line x1="0" y1="0" x2="#{$font-size}" y2="#{$line-height}" stroke="red" stroke-dasharray="3,3" stroke-width="1" />'; // 確認用斜め線
+  //$svg: $svg + '<line x2="0" y1="0" x1="#{$font-size}" y2="#{$line-height}" stroke="red" stroke-dasharray="3,3" stroke-width="1" />'; // 確認用斜め線
+
+  $svg: $svg + '</pattern></defs>';
+  $svg: $svg + '<rect width="#{$width}" height="#{$height}" fill="url(#pattern)"/>';
+  $svg: $svg + '</svg>';
+
+  @return svgUrlEncode($svg);
+}
+
+
+// 確認用にページ内容区画に文字組みのガイドを表示する。
+@if $layoutGuide != 0 {
+  //@page:left {
+  //  $width: $paper-width - $edge-margin - $gutter-margin;
+  //  $height: $paper-height - $top-margin - $bottom-margin;
+  //  $svgData: genelate($width,$height);
+  //  background-image: url('data:image/svg+xml;charset=utf8,#{$svgData}');
+  //  background-size: $width $height;
+  //  background-repeat: no-repeat;
+  //  background-position: top $top-margin left $edge-margin;
+  //}
+  //
+  //@page:right {
+  //  $width: $paper-width - $edge-margin - $gutter-margin;
+  //  $height: $paper-height - $top-margin - $bottom-margin;
+  //  $svgData: genelate($width,$height);
+  //  background-image: url('data:image/svg+xml;charset=utf8,#{$svgData}');
+  //  background-size: $width $height;
+  //  background-repeat: no-repeat;
+  //  background-position: top $top-margin left $gutter-margin;
+  //}
+}
+
+

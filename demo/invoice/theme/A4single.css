@@ -1,0 +1,85 @@
+@page {
+    size: 210mm 297mm;
+    margin-top: 20mm;
+    margin-bottom: 20mm;
+    @top-left-corner {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @top-left {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @top-center {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @top-right {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @top-right-corner {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @right-top {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @right-middle {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @right-bottom {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @bottom-left-corner {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @bottom-left {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @bottom-center {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @bottom-right {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @bottom-right-corner {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @left-top {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @left-middle {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+    @left-bottom {
+        font-family: "Neue Frutiger World", "Verdana", "Yakumono", "body", "Hiragino Sans", sans-serif;
+        font-size: 75%;
+        content: "";
+    }
+}

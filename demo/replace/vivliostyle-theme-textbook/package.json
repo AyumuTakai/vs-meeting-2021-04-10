@@ -1,0 +1,37 @@
+{
+  "name": "vivliostyle-theme-textbook",
+  "author": "Hackwork Systems <publish@hackwork.jp>",
+  "version": "1.0.3",
+  "keywords": [
+    "vivliostyle",
+    "vivliostyle-theme"
+  ],
+  "files": [
+    "*.css"
+  ],
+  "vivliostyle": {
+    "theme": {
+      "style": "./scss/style.scss",
+      "name": "IT系テキスト用テーマ",
+      "author": "高井 歩",
+      "category": "Textbook",
+      "topics": [
+        "book",
+        "scss",
+        "replace.js",
+        "PlantUML",
+        "自家用"
+      ],
+      "scripts": "scripts.js"
+    }
+  },
+  "scripts": {
+    "test": "sass scss/sys.scss:style.css"
+  },
+  "dependencies": {
+    "plantuml-encoder": "^1.4.0"
+  },
+  "devDependencies": {
+    "sass": "^1.30.0"
+  }
+}

@@ -1,0 +1,91 @@
+@charset "UTF-8";
+@use "variables" as *;
+
+@media screen {
+  body {
+    margin: auto 4rem;
+    padding-bottom: 4rem;
+  }
+
+  article {
+    margin: 0 auto;
+    max-width: 60rem;
+  }
+
+  section {
+    clear: both;
+  }
+
+  figure {
+    max-width: 50rem;
+  }
+
+  .footnote {
+    vertical-align: super;
+
+    // background-color: rgba(214, 255, 0, 0.4);
+    margin: 0 0.1rem;
+    line-height: 0;
+
+    a {
+      word-break: break-all;
+    }
+  }
+
+  a {
+    &[data-ref='sec'], &[data-ref='subsec'], &[data-ref='fig'], &[data-ref='tbl'], &[data-ref='cite'] {
+      // color: #e74c3c;
+      // background-color: rgba(255, 0, 0, 0.3);
+    }
+
+    &[data-ref='sec']::before {
+      content: '§ XXX';
+    }
+
+    &[data-ref='subsec']::before {
+      content: '§ XXX.XXX';
+    }
+
+    &[data-ref='fig']::before {
+      content: 'Fig. XXX';
+    }
+  }
+
+  :root:lang(ja) a[data-ref='fig']::before {
+    content: '図 XXX';
+  }
+
+  a[data-ref='tbl']::before {
+    content: 'Table XXX';
+  }
+
+  :root:lang(ja) a[data-ref='tbl']::before {
+    content: '表 XXX';
+  }
+
+  a[data-ref='cite']::before {
+    content: '[XXX]';
+  }
+}
+
+@media print {
+  :root {
+    widows: 3;
+    orphans: 3;
+    hyphens: auto;
+   // font-size: 75%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+  }
+
+  tr, th, td {
+    break-inside: avoid;
+  }
+
+  .footnote {
+    float: footnote;
+    text-align: left;
+  }
+}

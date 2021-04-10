@@ -1,0 +1,19 @@
+{
+  "name": "invoice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "yarn install && vs build",
+    "postbuild": "open -a Preview *.pdf",
+    "clean": "rimraf *.pdf .workspace",
+    "clean-full": "rimraf node_modules *.pdf .workspace"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-yaml": "^4.0.0",
+    "rimraf": "^3.0.2"
+  }
+}

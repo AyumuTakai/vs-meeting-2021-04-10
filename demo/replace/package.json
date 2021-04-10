@@ -1,0 +1,8 @@
+{
+  "name": "multi-theme",
+  "version": "1.0.0",
+  "scripts": {},
+  "dependencies": {
+    "@vivliostyle/extends-emoji-replace": "./emoji"
+  }
+}

@@ -1,0 +1,574 @@
+@charset "UTF-8";
+@use "variables" as *;
+
+//
+// Typography
+//
+
+// Headings
+h1, h2, h3 {
+  font-feature-settings: 'palt', 'calt';
+}
+
+h1 {
+  margin-top: 0;
+}
+
+h2 {
+}
+
+h3 {
+}
+
+
+// Paragraphs
+
+p {
+  //font-feature-settings: 'calt';
+  //text-align: justify;
+  text-indent: 1em;
+  word-break: break-all;
+}
+
+// Semantic text elements
+
+// Fonts
+
+// Blockquote
+
+blockquote {
+  margin: 1.5rem .5rem;
+  background-color: #ecf0f1;
+  padding: 0.5em 1em;
+  border-radius: 0.2rem;
+
+  :not(pre) > code {
+    padding: 0;
+    word-break: break-all;
+  }
+}
+
+// Lists
+
+ul, ol {
+  padding-inline-start: 1.5em;
+}
+
+//
+// Code
+//
+
+code[class*='language-'] {
+  // color: #f8f8f2;
+  color: black;
+  background: none;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: $code_font;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+
+/* Code blocks */
+
+:not(pre) > code[class*='language-'], pre[class*='language-'] {
+  // background: #272822;
+  background-color: #f4f4f4;
+  border: solid 1px dimgray;
+}
+
+:not(pre) > code {
+  padding: 0.1rem 0.3rem !important;
+
+  // color: #34495e;
+  background-color: #ecf0f1;
+}
+
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+  color: black;
+}
+
+code[class*='language-'], pre[class*='language-'] {
+  margin: 1.5em 0;
+  line-height: 1.2 !important;
+  letter-spacing: 0.03rem !important;
+  border-radius: 0.2rem !important;
+  text-shadow: none !important;
+}
+
+
+
+//
+// Pre
+//
+
+pre {
+  margin: 1.5rem 0;
+  box-decoration-break: clone;
+}
+
+pre[class*='language-'] {
+  // color: #f8f8f2;
+  color: black;
+  background: #f8f8f8;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: $code_font;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+// Figure
+
+figure {
+  margin: 1.5rem auto;
+  text-align: center;
+  position: relative;
+
+  // margin: 4em 0 1em;
+  padding-top: 0.5em;
+
+  pre[class*='language-'] {
+    margin: 0;
+    background-color: #f8f8f8;
+  }
+
+  img {
+    max-width: 100%;
+    margin: 0.5rem auto;
+  }
+
+  figcaption {
+    page-break-after: avoid;
+    margin: .5rem auto;
+    width: 90%;
+    font-size: 90%;
+    break-inside: avoid;
+    position: absolute;
+    top: -0.6em;
+    left: 1em;
+    width: fit-content;
+
+    // background-color: white;
+    text-align: left;
+
+    // display: block;
+    margin: 0;
+    padding: 0 0.5em;
+    text-shadow: 2px  2px 1px #ffffff, -2px  2px 1px #ffffff, 2px -2px 1px #ffffff, -2px -2px 1px #ffffff, 2px  0px 1px #ffffff, 0px  2px 1px #ffffff, -2px  0px 1px #ffffff, 0px -2px 1px #ffffff;
+  }
+
+  img {
+    &[src$='.png'], &[src$='.jpg'], &[src$='.jpeg'], &[src$='.gif'], &[src$='.webp'], &[src$='.svg'] {
+      image-resolution: 200dpi;
+    }
+  }
+
+  &.fig {
+    counter-increment: fig;
+
+    figcaption::before {
+      content: "Fig. " counter(fig) ": ";
+    }
+  }
+}
+
+
+
+figure {
+  &.tbl {
+    counter-increment: tbl;
+
+    figcaption::before {
+      content: "Table " counter(tbl) ": ";
+    }
+  }
+
+  &.plantuml img {
+    margin: 0;
+    padding: 0;
+    border: solid 1px black;
+    border-radius: 0.2em;
+    width: 100%;
+  }
+
+  &.code {
+    font-family: $code_font;
+    text-align: left;
+    div {
+      background-color: #f8f8f8;
+      display: block;
+      border: solid 1px dimgray;
+      list-style-type: none;
+      counter-reset: item;
+      border-radius: 0.2em;
+      line-height: 1.2em;
+      padding-top: 1em;
+      padding-bottom: 0.5em;
+      padding-left: 3.5em;
+      table-layout: fixed;
+    }
+    div pre {
+      margin:0;
+      padding: 0;
+      //line-height: 0;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      word-wrap: anywhere;
+      word-break: break-all;
+      tab-size: 2;
+      hyphens: none;
+
+      &:before {
+        font-weight: 200;
+        counter-increment: item;
+        content: counter(item, decimal-leading-zero);
+        padding-right: .8em;
+        color: #333333;
+        margin-left: -3em;
+      }
+    }
+    ol {
+      background-color: #f8f8f8;
+      display: block;
+      border: solid 1px dimgray;
+      list-style-type: none;
+      counter-reset: item;
+      border-radius: 0.2em;
+      line-height: 1.2em;
+      padding-top: 1em;
+      padding-bottom: 0.5em;
+      padding-left: 3.5em;
+    }
+
+    li {
+      font-feature-settings: 'palt' 1;
+      font-kerning: none;
+      padding: 0.1em 0;
+      margin: 0;
+      line-height: 2em;
+      white-space: pre-wrap;
+      width: 100%;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-all;
+      list-style-position: outside;
+
+      //text-indent: -1em;
+
+      &:before {
+        font-weight: 200;
+        counter-increment: item;
+        content: counter(item, decimal-leading-zero);
+        padding-right: .8em;
+        color: #333333;
+        margin-left: -3em;
+      }
+    }
+  }
+}
+
+
+
+.namespace {
+  opacity: 0.7;
+}
+
+.token {
+  &.comment, &.prolog, &.doctype, &.cdata {
+    /*color: slategray;*/
+    color: black;
+  }
+
+  &.punctuation {
+    /*color: #f8f8f2;*/
+  }
+
+  &.property, &.tag, &.constant, &.symbol, &.deleted {
+    /*color: #f92672;*/
+  }
+
+  &.boolean, &.number {
+    /*color: #ae81ff;*/
+  }
+
+  &.selector, &.attr-name, &.string, &.char, &.builtin, &.inserted {
+    /*color: #a6e22e;*/
+  }
+
+  &.operator, &.entity, &.url {
+    /*color: #f8f8f2;*/
+    color: black;
+  }
+
+  &.variable {
+    /*color: #f8f8f2;*/
+    color: black;
+  }
+
+  &.atrule, &.attr-value, &.function, &.class-name {
+    /*color: #e6db74;*/
+  }
+
+  &.keyword {
+    /*color: #66d9ef;*/
+  }
+
+  &.regex {
+    /*color: #fd971f;*/
+  }
+
+  &.important {
+    /*color: #fd971f;*/
+
+    font-weight: bold;
+  }
+
+  &.bold {
+    font-weight: bold;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.entity {
+    cursor: help;
+  }
+}
+
+.language-css .token.string, .style .token.string {
+  // color: #f8f8f2;
+  color: black;
+}
+
+:root {
+  font-family: "Hiragino Maru Gothic ProN";
+  font-weight: 400;
+  //line-height: 1.5;
+}
+
+
+
+
+a {
+  text-decoration: none;
+
+  // color: #3498db;
+
+  &:visited {
+    // color: #9b59b6;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    // color: #e74c3c;
+  }
+}
+
+//
+// Table
+//
+
+table {
+  display: table;
+  max-width: 100%;
+  margin: 1.5rem auto;
+  border-color: currentColor;
+  border-collapse: collapse;
+
+  th, td {
+    padding: .25rem 1rem .25rem 0;
+    background-color: transparent;
+    border: 0;
+  }
+
+  th:first-child, td:first-child {
+    padding-left: 1rem;
+  }
+
+  th {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+  }
+
+  tr {
+    //box-shadow: 0 0.7px 0 -0.3px currentColor;
+    border-bottom: solid 1px;
+    border-top: solid 1px;
+
+    &:last-child {
+      border-bottom: 1px solid;
+    }
+  }
+}
+
+
+
+.page-break {
+  page-break-after: always !important;
+}
+
+body {
+  counter-reset: section subsection fig tbl footnote cite;
+}
+
+a {
+  &[data-ref="sec"], &[data-ref="subsec"], &[data-ref="fig"], &[data-ref="tbl"], &[data-ref="cite"] {
+    text-decoration: none;
+    color: inherit;
+    margin: 0 .15em;
+  }
+
+  &[data-ref="sec"]::before {
+    content: "§" target-counter(attr(href), section);
+  }
+
+  &[data-ref="subsec"]::before {
+    content: "§" target-counter(attr(href), section) "." target-counter(attr(href url), subsection);
+  }
+
+  &[data-ref="fig"]::before {
+    content: "Fig. " target-counter(attr(href), fig);
+  }
+
+  &[data-ref="tbl"]::before {
+    content: "Table " target-counter(attr(href), tbl);
+  }
+
+  &[data-ref="cite"]::before {
+    content: "[" target-counter(attr(href), cite) "]";
+  }
+}
+
+
+
+
+
+section {
+  counter-increment: section;
+  counter-reset: subsection;
+
+  article {
+    counter-increment: subsection;
+  }
+}
+
+.book {
+  counter-reset: chapter;
+}
+
+.chapter {
+  counter-increment: chapter;
+  counter-reset: section subsection ;
+}
+
+// Footnote
+
+.footnote {
+  counter-increment: footnote;
+
+  &::footnote-call, &::footnote-marker {
+    content: "[" counter(footnote) "]";
+  }
+
+  &::footnote-call {
+    font-size: 80%;
+    margin: 0 .3rem;
+  }
+
+  &::footnote-marker {
+    margin-right: .2rem;
+  }
+}
+
+ol.cite-items {
+  padding-left: 2rem;
+  list-style: none;
+
+  li {
+    counter-increment: cite;
+    position: relative;
+
+    &::before {
+      content: "[" counter(cite) "] ";
+      position: absolute;
+      left: -2rem;
+    }
+  }
+}
+
+// TOC
+
+nav {
+  &#toc, &[role='doc-toc'] {
+    break-before: page;
+    font-size: 120%;
+  }
+
+  &#toc li a::after, &[role='doc-toc'] li a::after {
+    content: target-counter(attr(href), page);
+  }
+
+  &#toc li a, &[role='doc-toc'] li a {
+    display: inline-flex;
+    width: 100%;
+    text-decoration: none;
+    color: currentColor;
+    align-items: baseline;
+  }
+
+  &#toc li a::before, &[role='doc-toc'] li a::before {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    border-bottom: solid 1px;
+    content: '';
+    order: 1;
+    flex: auto;
+  }
+
+  &#toc li a::after, &[role='doc-toc'] li a::after {
+    text-align: right;
+    content: target-counter(attr(href), page);
+    align-self: flex-end;
+    flex: none;
+    order: 2;
+  }
+}
+
+ul {
+  margin-block-end: $line-height;
+}
+li {
+  line-height: $line-height;
+}

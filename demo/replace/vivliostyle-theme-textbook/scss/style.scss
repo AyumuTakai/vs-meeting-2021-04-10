@@ -1,0 +1,24 @@
+/*
+Theme Name: Textbook with side-note.
+Version: 1.0
+Author: Ayumu Takai (twitter: @AyumuTakai)
+Description: IT系テキスト向けテーマ(独自タグ,側注対応)
+Tags: textbook, side-note, A4, replace
+License: MIT license
+License URI: https://opensource.org/licenses/mit-license.php
+
+ページサイズ等のカスタマイズは"_valiables.scss"を編集してください
+*/
+
+@charset "UTF-8";
+@forward "variables";
+// ページ定義
+@forward "page";
+// Markdownからの変換で作られる要素
+@forward "vivliostyle";
+// 日本語対応
+@forward "ja";
+// メディア別スタイル定義
+@forward "media";
+// テーマ独自の要素
+@forward "theme";

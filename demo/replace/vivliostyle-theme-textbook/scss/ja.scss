@@ -1,0 +1,22 @@
+@charset "UTF-8";
+@use "variables" as *;
+
+// 日本語キャプションと参照
+:root:lang(ja) {
+
+  a[data-ref="fig"]::before {
+    content: "図" target-counter(attr(href), fig);
+  }
+
+  a[data-ref="tbl"]::before {
+    content: "表" target-counter(attr(href), fig);
+  }
+
+  figure.fig figcaption::before {
+    content: "図" counter(fig) ": ";
+  }
+
+  figure.tbl figcaption::before {
+    content: "表" counter(tbl) ": ";
+  }
+}

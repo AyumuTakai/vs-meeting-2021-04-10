@@ -1,0 +1,29 @@
+{
+  "name": "@vivliostyle/extends-emoji-replace",
+  "description": "リプレイス機能テスト",
+  "version": "0.0.1",
+  "author": "Ayumu Takai",
+  "files": [
+    "*.css",
+    "*.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "vivliostyle",
+    "vivliostyle-theme"
+  ],
+  "license": "CC0-1.0",
+  "vivliostyle": {
+    "theme": {
+      "name": "絵文字置換",
+      "style": "./theme.css",
+      "category": "extends",
+      "scripts": "scripts.js",
+      "topics": [
+        "リプレイス"
+      ]
+    }
+  }
+}

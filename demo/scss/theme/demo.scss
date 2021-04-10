@@ -1,0 +1,24 @@
+@charset "utf-8";
+@use "variables" as *;
+
+// 左ページのレイアウト
+@page:left {
+  @bottom-left {
+    // ページ番号
+    content: counter(page);
+    color: black;
+    font-size: 20pt;
+    padding: $footer-padding-top $footer-padding-right $footer-padding-bottom $footer-padding-left;
+  }
+}
+
+// 右ページのレイアウト
+@page:right {
+  @bottom-right {
+    // ページ番号
+    content: counter(page);
+    color: black;
+    font-size: 20pt;
+    padding: $footer-padding-top $footer-padding-right $footer-padding-bottom $footer-padding-left;
+  }
+}

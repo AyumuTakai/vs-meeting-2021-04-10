@@ -1,0 +1,65 @@
+//
+// 用紙サイズ
+//
+// A4縦 高さ
+$paper-height: 297mm !default;
+// A4縦 幅
+$paper-width: 210mm !default;
+
+//
+// ページ設定
+//
+// ページマージン
+// 以下のマージンを除いた領域がbody要素以下が表示される範囲
+// 天マージン
+$top-margin: 20mm !default;
+// 地マージン
+$bottom-margin: 15mm !default;
+// 小口マージン
+$edge-margin: 18mm !default;
+// のどマージン
+$gutter-margin: 35mm !default;
+// 背景画像
+// urlは生成したCSSファイルからの相対パスで指定
+// 背景画像が不要な場合はnullを指定
+$left-background-image: url(../bg_left.svg) !default;
+$right-background-image: url(../bg_right.svg) !default;
+// 側注領域
+$sidenote-area: 30mm !default;
+
+//
+// 本文
+//
+// 本文文字サイズ(pt)単位を付けずに数値のみ指定
+$font_size: 11 !default;
+
+// 行の高さ(pt)
+$line_height: 20 !default;
+
+// 段落間 本文の文字($font-size)に対する倍率
+// 本文文字サイズに応じて微調整が必要
+$paragraph-spacing: 0 !default;
+
+// 文字間隔
+$letter-spacing: 0 !default;
+
+//
+// コード
+//
+// https://github.com/yuru7/HackGen
+$code_font:"Hackgen" !default;
+
+//
+// ユーティリティ
+//
+
+// ページレイアウト確認用枠線 0以外で表示
+$layoutcheck: 0 !default;
+
+//
+// 算出値
+//
+
+// scss_vars:の後で計算
+$font-size: $font_size * 1.3333px;
+$line-height: floor($line_height * 1.3333px); // Chrome,Safariでは小数点以下切り捨て
